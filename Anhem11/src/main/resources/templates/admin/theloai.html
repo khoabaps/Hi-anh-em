@@ -104,6 +104,12 @@ input[type="submit"]:hover {
 
 
     </style>
+    <!-- Sử dụng CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<!-- Hoặc tải về và liên kết trực tiếp -->
+<!-- <script src="/path/to/angular.min.js"></script> -->
+
      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 
      <!-- jQuery -->
@@ -112,12 +118,7 @@ input[type="submit"]:hover {
      <!-- DataTables JavaScript -->
      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
  
-     <script>
-         // Kích hoạt DataTables khi trang được tải
-         $(document).ready(function() {
-             $('#myTable').DataTable();
-         });
-     </script>
+     
 </head>
 <body>
 
@@ -134,42 +135,37 @@ input[type="submit"]:hover {
         <!-- Add more navigation links as needed -->
     </ul>
 </nav>
-<form th:object="${TLEntity}" method="post">
-   <label for="username">id Thể loại:</label>
-    <input type="text" id="username" th:field="*{id_tl}" />
-
-    <label for="password">tên thể loại</label>
-    <input type="text" id="password" th:field="*{tentheloai}" /> 
-
-    Submit button 
-    
-    <input type="submit" th:formaction="@{/theloai/create}" value="Tạo" />
-</form>
-
-
-<!-- Table -->
-<table id="myTable">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th></th>
-            <!-- Add more table headers as needed -->
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Use Thymeleaf each loop to iterate over data -->
-        <tr th:each="model : ${model}" >
-            <td >[[${model.id_tl}]]</td>
-            <td >[[${model.tentheloai}]]</td>
-            <td>
-                <a th:href="@{/theloai/edit/{id} (id=${model.id_tl})}">Sửa</a>
-                <a th:href="@{/theloai/delete/{id} (id=${model.id_tl})}">Xóa</a>
-            </td>
-            <!-- Add more table cells as needed -->
-        </tr>
-    </tbody>
-</table>
-
+<main id="content" ng-app="appTL" ng-controller="ctlTL">
+    <form  method="post">
+        <label for="username">id Thể loại:</label>
+         <input type="text" id="username"  ng-model="form.id_tl" />
+     
+         <label for="password">tên thể loại</label>
+         <input type="text" id="password" ng-model="form.tentheloai" /> 
+     
+         Submit button 
+         
+         <input type="submit" th:formaction="@{/theloai/create}" value="Tạo" />
+         <button  class="btn btn-success mx-2" ng-click="create()">Thêm</button>
+                            <button  class="btn btn-success mx-2"  ng-click="update()">Cập nhật</button>
+     </form>
+     
+     
+     <!-- Table -->
+     <table id="dataTableTL" width="100%" cellspacing="0">
+         <thead>
+             <tr>
+               
+                
+             </tr>
+         </thead>
+         <tbody>
+             <!-- Use Thymeleaf each loop to iterate over data -->
+              <tr>
+             </tr> 
+         </tbody>
+     </table>
+</main>
+<script th:src="@{|/admin/js/theloai.js|}"></script> 
 </body>
 </html>
