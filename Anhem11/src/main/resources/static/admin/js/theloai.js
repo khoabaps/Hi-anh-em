@@ -93,22 +93,11 @@ app.controller("ctlTL", function($scope, $http, $filter, $window) {
 			$http.post(`/rest/theloai/create`, item).then(resp => {
 				// Update the table
 				$scope.updateTable(resp.data);
-
-				Swal.fire({
-					icon: 'success',
-					title: 'Thành công!',
-					text: 'Thêm mới thể loại thành công!',
-					showConfirmButton: false // Ẩn nút xác nhận
-				});
+				$scope.initialize();
 				setTimeout(() => {
 					$window.location.reload();
 				}, 3000); // Tải lại trang sau 3 giây
 			}).catch(error => {
-				Swal.fire({
-					icon: 'error',
-					title: 'Thất bại!',
-					text: 'Lỗi thêm mới thể loại!',
-				});
 				console.log("Error", error);
 			});
 		} else {
@@ -172,15 +161,7 @@ app.controller("ctlTL", function($scope, $http, $filter, $window) {
 	//xoa sp
 	$scope.delete = function(item) {
 		// Hiển thị thông báo xác nhận với SweetAlert2
-		Swal.fire({
-			title: 'Xác nhận xóa',
-			text: 'Bạn có chắc muốn xóa thể loại này?',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonText: 'Xóa',
-			cancelButtonText: 'Hủy bỏ'
-		}).then((result) => {
-			if (result.isConfirmed) {
+		
 				// Nếu người dùng xác nhận xóa, thực hiện yêu cầu DELETE
 				$http.delete(`/rest/theloai/delete/${item.id_tl}`).then(resp => {
 
@@ -217,8 +198,6 @@ app.controller("ctlTL", function($scope, $http, $filter, $window) {
 					}
 					console.log("Error", error);
 				});
-			}
-		});
 	};
 
 

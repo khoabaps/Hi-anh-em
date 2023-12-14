@@ -1,171 +1,188 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thymeleaf Example</title>
-    <style>
-        /* Reset some default styles */
-body, h1, h2, h3, p, ul, li, table {
-    margin: 0;
-    padding: 0;
-}
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Thymeleaf Example</title>
+	<style>
+		/* Reset some default styles */
+		body,
+		h1,
+		h2,
+		h3,
+		p,
+		ul,
+		li,
+		table {
+			margin: 0;
+			padding: 0;
+		}
 
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-}
+		body {
+			font-family: 'Arial', sans-serif;
+			line-height: 1.6;
+			background-color: #f4f4f4;
+		}
 
-header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-}
+		header {
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			padding: 10px;
+		}
 
-nav {
-    background-color: #666;
-}
+		nav {
+			background-color: #666;
+		}
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
+		nav ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
 
-nav ul li {
-    display: inline;
-    margin-right: 10px;
-}
+		nav ul li {
+			display: inline;
+			margin-right: 10px;
+		}
 
-nav a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-}
+		nav a {
+			text-decoration: none;
+			color: #fff;
+			font-weight: bold;
+		}
 
-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    background-color: #fff;
-}
+		table {
+			width: 80%;
+			margin: 20px auto;
+			border-collapse: collapse;
+			background-color: #fff;
+		}
 
-table, th, td {
-    border: 1px solid #ddd;
-}
+		table,
+		th,
+		td {
+			border: 1px solid #ddd;
+		}
 
-th, td {
-    padding: 10px;
-    text-align: left;
-}
+		th,
+		td {
+			padding: 10px;
+			text-align: left;
+		}
 
-thead {
-    background-color: #333;
-    color: #fff;
-}
+		thead {
+			background-color: #333;
+			color: #fff;
+		}
 
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-/* Style for input fields */
-input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-}
+		tbody tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
 
-/* Style for input when focused */
-input[type="text"]:focus, input[type="password"]:focus {
-    border: 2px solid #007BFF;
-}
+		/* Style for input fields */
+		input[type="text"],
+		input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			outline: none;
+		}
 
-/* Style for submit button */
-input[type="submit"] {
-    width: 100%;
-    background-color: #007BFF;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+		/* Style for input when focused */
+		input[type="text"]:focus,
+		input[type="password"]:focus {
+			border: 2px solid #007BFF;
+		}
 
-/* Style for submit button when hovered */
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
+		/* Style for submit button */
+		input[type="submit"] {
+			width: 100%;
+			background-color: #007BFF;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		/* Style for submit button when hovered */
+		input[type="submit"]:hover {
+			background-color: #0056b3;
+		}
+	</style>
+	<!-- Sử dụng CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+	<!-- Hoặc tải về và liên kết trực tiếp -->
+	<!-- <script src="/path/to/angular.min.js"></script> -->
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- DataTables JavaScript -->
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css">
 
 
-    </style>
-    <!-- Sử dụng CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 
-<!-- Hoặc tải về và liên kết trực tiếp -->
-<!-- <script src="/path/to/angular.min.js"></script> -->
-
-     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-
-     <!-- jQuery -->
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- 
-     <!-- DataTables JavaScript -->
-     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
- 
-     
 </head>
+
 <body>
 
-<!-- Header -->
-<header>
-    <h1>Welcome to My Website</h1>
-</header>
+	<!-- Header -->
+	<header>
+		<h1>Welcome to My Website</h1>
+	</header>
 
-<!-- Navigation -->
-<nav>
-    <ul>
-        <li><a th:href="@{/}" th:text="#{home}">Home</a></li>
-        <li><a th:href="@{/about}" th:text="#{about}">About</a></li>
-        <!-- Add more navigation links as needed -->
-    </ul>
-</nav>
-<main id="content" ng-app="appTL" ng-controller="ctlTL">
-    <form  method="post">
-        <label for="username">id Thể loại:</label>
-         <input type="text" id="username"  ng-model="form.id_tl" />
-     
-         <label for="password">tên thể loại</label>
-         <input type="text" id="password" ng-model="form.tentheloai" /> 
-     
-         Submit button 
-         
-         <input type="submit" th:formaction="@{/theloai/create}" value="Tạo" />
-         <button  class="btn btn-success mx-2" ng-click="create()">Thêm</button>
-                            <button  class="btn btn-success mx-2"  ng-click="update()">Cập nhật</button>
-     </form>
-     
-     
-     <!-- Table -->
-     <table id="dataTableTL" width="100%" cellspacing="0">
-         <thead>
-             <tr>
-               
-                
-             </tr>
-         </thead>
-         <tbody>
-             <!-- Use Thymeleaf each loop to iterate over data -->
-              <tr>
-             </tr> 
-         </tbody>
-     </table>
-</main>
-<script th:src="@{|/admin/js/theloai.js|}"></script> 
+	<!-- Navigation -->
+	<nav>
+		<ul>
+			<li><a th:href="@{/}" th:text="#{home}">Home</a></li>
+			<li><a th:href="@{/about}" th:text="#{about}">About</a></li>
+			<!-- Add more navigation links as needed -->
+		</ul>
+	</nav>
+	<main id="content" ng-app="appTL" ng-controller="ctlTL">
+		<form method="post">
+			<label for="username">id Thể loại:</label>
+			<input type="text" id="username" ng-model="form.id_tl" />
+
+			<label for="password">tên thể loại</label>
+			<input type="text" id="password" ng-model="form.tentheloai" />
+
+			Submit button
+
+			<input type="submit" th:formaction="@{/theloai/create}" value="Tạo" />
+			<button class="btn btn-success mx-2" ng-click="create()">Thêm</button>
+			<button class="btn btn-success mx-2" ng-click="update()">Cập nhật</button>
+		</form>
+
+
+		<!-- Table -->
+		<table id="dataTableTL" width="100%" cellspacing="0">
+			<thead>
+				<tr>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Use Thymeleaf each loop to iterate over data -->
+				<tr>
+				</tr>
+			</tbody>
+		</table>
+	</main>
+	<script th:src="@{|/admin/js/theloai.js|}"></script>
 </body>
+
 </html>
